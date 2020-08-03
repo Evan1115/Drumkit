@@ -6,6 +6,7 @@ for(var i = 0 ; i < drumButton.length ; i++){
       
         var buttonInnerHTML = this.innerHTML;
        makeSounds(buttonInnerHTML);
+       buttonAnimation(buttonInnerHTML);
       
     });
 
@@ -17,6 +18,7 @@ for(var i = 0 ; i < drumButton.length ; i++){
 document.addEventListener("keydown", function(event){ //pass in the event that trigger the keypress
          
          makeSounds(event.key);
+         buttonAnimation(event.key);
 });
 
 function makeSounds(key){
@@ -32,7 +34,7 @@ function makeSounds(key){
           break;
           case "s":
               var snare = new Audio("sounds/snare.mp3");
-              snare.play();
+              snare.play();  
           break;
           case "d":
               var tom1 = new Audio("sounds/tom-1.mp3");
@@ -55,4 +57,13 @@ function makeSounds(key){
             console.log()
             break;
     }
+}
+
+function buttonAnimation(currentKey){
+    var activeButton =  document.querySelector("." + currentKey);
+    activeButton.classList.add("pressed");
+    setTimeout(function() {
+      activeButton.classList.remove("pressed")
+    }, 100);
+
 }
